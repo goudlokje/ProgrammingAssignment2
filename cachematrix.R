@@ -37,6 +37,15 @@ testCacheSolve <- function() {
 	inverse2 <- cacheSolve(m_cache)
 	stopifnot(all(m %*% inverse2 == id_m))
 
+	# Make sure we didn't break anything
+
+	# Test start condition
+	stopifnot(! is.null(m_cache$getinverse()))
+	# Check if the cached value is the correct value
+	stopifnot(all(m_cache$getinverse() == solve(m)))
+
+	# Success!
+
 	TRUE
 }
 
